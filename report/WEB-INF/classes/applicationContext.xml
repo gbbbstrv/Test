@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress ALL -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-2.5.xsd" default-lazy-init="true">
+
+  <!-- 定义数据源的Bean ，给Hibernate的sessionFactory-->
+  <bean id="dataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+    <property name="url" value="jdbc:mysql://localhost:3306/test"></property>
+    <property name="username" value="root"></property>
+    <property name="password" value="123456"></property>
+    <!--<property name="url" value="jdbc:mysql://10.224.57.221:3306/test"></property>-->
+    <!--<property name="username" value="root"></property>-->
+    <!--<property name="password" value="2012cisco2012"></property>-->
+  </bean>
+
+  <!-- 定义Hibernate的sessionFactory，通过该Bean，可以获得Hibernate的Session-->
+  <bean id="sessionFactory"
+        class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+    <property name="dataSource">
+      <ref bean="dataSource" />
+    </property>
+    <property name="hibernateProperties">
+      <props>
+        <prop key="hibernate.dialect">
+          org.hibernate.dialect.MySQLDialect
+        </prop>
+        <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/test</prop>
+        <!--<prop key="hibernate.connection.url">jdbc:mysql://10.224.57.221:3306/test</prop>-->
+        <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+
+        <!--&lt;!&ndash;设置二级缓冲&ndash;&gt;-->
+        <!--<prop key="hibernate.cache.provider_class">-->
+        <!--org.hibernate.cache.EhCacheProvider-->
+        <!--</prop>-->
+
+        <!--&lt;!&ndash;设置二级缓冲，打开查询缓冲&ndash;&gt;-->
+        <!--<prop key="hibernate.cache.use_query_cache">true</prop>-->
+        <!--&lt;!&ndash;设置显示Hibernate操作的SQL语句&ndash;&gt;-->
+        <!--<prop key="hibernate.show_sql">true</prop>-->
+      </props>
+    </property>
+
+    <property name="mappingResources">
+      <list>
+
+        <value>com/webex/report/model/component.hbm.xml</value>
+        <value>com/webex/report/model/detail.hbm.xml</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="userDao" class="com.webex.report.dao.impl.UserDaoImpl">
+    <property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+  <bean id="userService" class="com.webex.report.service.impl.UserServiceImpl">
+    <property name="userDao" ref="userDao"></property>
+  </bean>
+
+  <bean id="userAction" class="com.webex.report.action.UserAction" scope="prototype">
+    <property name="userService" ref="userService"></property>
+  </bean>
+
+
+  <!-- 配置事务管理器 -->
+  <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+    <property name="sessionFactory">
+      <ref local="sessionFactory"/>
+    </property>
+  </bean>
+
+  <!-- 配置事务特性 ，配置add、delete和update开始的方法，事务传播特性为required-->
+  <tx:advice id="txAdvice" transaction-manager="transactionManager">
+    <tx:attributes>
+      <tx:method name="add*" propagation="REQUIRED"/>
+      <tx:method name="delete*" propagation="REQUIRED"/>
+      <tx:method name="update*" propagation="REQUIRED"/>
+      <tx:method name="*" read-only="true"/>
+    </tx:attributes>
+  </tx:advice>
+
+  <!-- 配置那些类的方法进行事务管理，当前cn.com.jobedu.oa.service包中的子包、类中所有方法需要，还需要参考tx:advice的设置 -->
+  <aop:config>
+    <aop:pointcut id="allManagerMethod" expression="execution (* com.webex.report.service.*.*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod"/>
+  </aop:config>
+
+</beans>
