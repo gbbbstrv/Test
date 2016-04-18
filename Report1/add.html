@@ -1,0 +1,59 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>add</title>
+    <link type="text/css" href="css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+    <link type="text/css" href="css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-timepicker-zh-CN.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".ui_timepicker").datetimepicker({
+                //showOn: "button",
+                //buttonImage: "./css/images/icon_calendar.gif",
+                //buttonImageOnly: true,
+                showSecond: true,
+                timeFormat: 'hh:mm:ss',
+                stepHour: 1,
+                stepMinute: 1,
+                stepSecond: 1
+            })
+        })
+    </script>
+    <link rel="stylesheet" href="css/index/index.css">
+    <link rel="stylesheet" href="css/4.2.0fontawesome/css/font-awesome.min.css">
+</head>
+<body>
+<div class="header">
+    <a href=""><strong class=""></strong>添加</a>
+    <a href=""><strong class=""></strong>详情</a>
+</div>
+<div class="content">
+  <div class="research">
+    <form action="" method="post">
+        <div class="inline">
+          <span>名字:</span>
+          <select name="">
+              <option value=""><-请选择-></option>
+              <option value="向服务器发送的数据">我是动态生成的</option>
+          </select>
+        </div>
+        <div class="inline">
+          <span>信息:</span><input name="" type="text" value="">
+        </div>
+        <div class="inline">
+          <span>发布时间:</span><input type="text" name="startTime" class="ui_timepicker" value="">
+        </div>
+        <div class="inline">
+          <span>结束时间:</span><input type="text" name="endTime" class="ui_timepicker" value="">
+        </div>
+        <input type="submit" value="保存">
+    </form>
+  </div>
+
+
+</div>
+</body>
+</html>
