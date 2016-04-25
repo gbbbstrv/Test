@@ -1,0 +1,371 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <title>Webex CI</title>
+
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">-->
+  <link type="text/css" href="css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+  <link type="text/css" href="css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link type="text/css" href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet" />
+
+
+  <link rel="stylesheet" href="css/index.css">
+  <script type="text/javascript" charset="utf-8" language="javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" charset="utf-8" language="javascript" src="js/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf-8" language="javascript" src="js/DT_bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="js/locales/bootstrap-datetimepicker.fr.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
+
+  <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+  <script type="text/javascript">
+
+
+    $(document).ready(function() {
+
+            $('.form_datetime').datetimepicker({
+                //language:  'fr',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                forceParse: 0,
+                showMeridian: 1
+            });
+            $('.form_date').datetimepicker({
+                language: 'fr',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+            $('.form_time').datetimepicker({
+                language: 'fr',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 1,
+                minView: 0,
+                maxView: 1,
+                forceParse: 0
+            });
+
+
+
+        $.ajax({
+        type: "POST",
+        url: "php/loaddata.php",
+//            data:$('#config').serialize(),//格式化表单参数或者也可以使用data: {'folder':$('input[name=folder]').val(),'page':$('input[name=page]').val()},
+//            dataType: "text",
+//            data: "people="+ '1',
+//        data: {'sql':$('textarea[name=sql]').val(),'page':$('input[name=page]').val()},
+        error:function(){
+          alert('error');
+        },
+        success: function (data) {
+//          $("#example").dataTable().fnClearTable();
+          $("#example").dataTable().fnDestroy();
+          var json = eval('(' + data + ')');
+          var list=json.data;
+          var tbBody="";
+          for(var i in list){
+            tbBody += "<tr>" +
+//                    "<td><div align=\"center\">"+json.data[i].id+"</div></td>" +
+                    "<td width=\"80px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].time+"</div></td>" +
+                    "<td width=\"30px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].project+"</div></td>" +
+                    "<td width=\"30px\"><div align=\"center\">"+json.data[i].repository+"</div></td>" +
+                    "<td width=\"90px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].branch+"</div></td>" +
+                    "<td style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].type+"</div></td>" +
+                    "<td style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].author+"</div></td>" +
+                    "<td width=\"90px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].email+"</div></td>" +
+                    "<td width=\"200px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].commits+"</div></td><" +
+                    "/tr>"
+
+          }
+          $("#example tbody tr").remove();
+          $("#example").append(tbBody);
+
+
+          $("#example").DataTable( {
+            "order": [ 0, 'des' ],
+            searching:false,
+            "bAutoWidth" : true,
+            "aLengthMenu" :[100,200,300],
+            "iDisplayLength" : 100,
+            "aaSorting" : [[1, "asc"]],
+//                ajax: "php/test.php",
+//                data:dataSet,
+          } );
+        }
+      });
+
+
+      $("#example").DataTable( {
+        "order": [ 0, 'des' ],
+        searching:false,
+        "bProcessing": true,
+        "bAutoWidth" : true,
+        "aLengthMenu" :[100,200,300],
+        "iDisplayLength" : 100,
+        "aaSorting" : [[1, "asc"]],
+//        ajax: "php/loaddata.php",
+//        columns: [
+//          { data: "id" },
+//          { data: "time" },
+//          { data: "project" },
+//          { data: "repository" },
+//          { data: "branch" },
+//          { data: "type" },
+//          { data: "author" },
+//          { data: "email" },
+//          { data: "commits" }
+//
+//        ]
+      } );
+    } );
+
+    function AddHandlingFeeToRefund(){
+
+      $("#load").show();
+          $.ajax({
+            type: "POST",
+            url: "php/test.php",
+//            data:$('#config').serialize(),//格式化表单参数或者也可以使用data: {'folder':$('input[name=folder]').val(),'page':$('input[name=page]').val()},
+//            dataType: "text",
+//            data: "people="+ '1',
+            data: {'sql':$('textarea[name=sql]').val(),'page':$('input[name=page]').val()},
+            error:function(){
+              alert('error');
+            },
+            success: function (data) {
+              $("#example").dataTable().fnDestroy();
+              var json = eval('(' + data + ')');
+              var list=json.data;
+              var tbBody="";
+              for(var i in list){
+                tbBody += "<tr>" +
+//                    "<td><div align=\"center\">"+json.data[i].id+"</div></td>" +
+                        "<td width=\"80px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].time+"</div></td>" +
+                        "<td width=\"30px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].project+"</div></td>" +
+                        "<td width=\"30px\"><div align=\"center\">"+json.data[i].repository+"</div></td>" +
+                        "<td width=\"90px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].branch+"</div></td>" +
+                        "<td style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].type+"</div></td>" +
+                        "<td style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].author+"</div></td>" +
+                        "<td width=\"90px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].email+"</div></td>" +
+                        "<td width=\"200px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].commits+"</div></td><" +
+                        "/tr>"
+
+              }
+              $("#example tbody tr").remove();
+              $("#example").append(tbBody);
+
+
+              $("#example").DataTable( {
+                searching:false,
+                "bAutoWidth" : true,
+                "aLengthMenu" :[100,200,300],
+                "iDisplayLength" : 100,
+                "aaSorting" : [[1, "asc"]],
+//                ajax: "php/test.php",
+//                data:dataSet,
+              } );
+            }
+          });
+
+
+    } ;
+
+
+    function searchcommint(){
+//        alert("22");
+        $("#load").show();
+        $.ajax({
+            type: "POST",
+            url: "php/search.php",
+//            data:$('#config').serialize(),//格式化表单参数或者也可以使用data: {'folder':$('input[name=folder]').val(),'page':$('input[name=page]').val()},
+//            dataType: "text",
+//            data: "people="+ '1',
+            data: {'starttime':$('input[name=starttime]').val(),'endtime':$('input[name=endtime]').val(),'project':$('select[name=project]').val(),
+                    'repository':$('input[name=repository]').val(),'branch':$('input[name=branch]').val(),'author':$('input[name=author]').val()},
+            error:function(){
+                alert('error');
+            },
+            success: function (data) {
+//                alert(data);
+                $("#example").dataTable().fnDestroy();
+                var json = eval('(' + data + ')');
+                var list=json.data;
+                var tbBody="";
+                for(var i in list){
+                    tbBody += "<tr>" +
+//                    "<td><div align=\"center\">"+json.data[i].id+"</div></td>" +
+                            "<td width=\"80px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].time+"</div></td>" +
+                            "<td width=\"30px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].project+"</div></td>" +
+                            "<td width=\"30px\"><div align=\"center\">"+json.data[i].repository+"</div></td>" +
+                            "<td width=\"90px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].branch+"</div></td>" +
+                            "<td style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].type+"</div></td>" +
+                            "<td style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].author+"</div></td>" +
+                            "<td width=\"90px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].email+"</div></td>" +
+                            "<td width=\"200px\" style=\"word-break:break-all\"><div align=\"center\">"+json.data[i].commits+"</div></td><" +
+                            "/tr>"
+
+                }
+                $("#example tbody tr").remove();
+                $("#example").append(tbBody);
+
+
+                $("#example").DataTable( {
+                    searching:false,
+                    "bAutoWidth" : true,
+                    "aLengthMenu" :[100,200,300],
+                    "iDisplayLength" : 100,
+                    "aaSorting" : [[1, "asc"]],
+//                ajax: "php/test.php",
+//                data:dataSet,
+                } );
+            }
+        });
+
+
+    } ;
+
+  </script>
+
+
+</head>
+<body>
+
+<div class="navbar" style="margin-bottom:10px;">
+  <div class="navbar-inner">
+			<span class="brand" style="padding-top:7px;padding-bottom:5px;width:100px;">
+				<img src="./img/cisco_logo.jpeg" style="width:38px;">
+				Cisco
+			</span>
+    <div class="nav-collapse collapse navbar-responsive-collapse">
+      <ul class="nav">
+        <li class="divider-vertical"></li>
+      </ul>
+
+
+
+        <!--<li class="topbar-btn"><a href="http://10.224.38.156:8021/SMSUIConsole/main?entry-point=clops#modal-about" data-toggle="modal"><i class="icon-info-sign"></i> About</a></li>-->
+      </ul>
+    </div><!-- /.nav-collapse -->
+  </div>
+</div>
+
+<div class="container2" style="margin-top: 10px">
+  <!--<a href="../webproject/componentlist.action"><strong class=""></strong>add</a>-->
+  <!--<a href="../webproject/detaillist.action"><strong class=""></strong>report</a>-->
+  <div class="tab-top1" >
+    <ul class="nav nav-tabs" id="main-tab">
+      <!--<li class=""><a href="#batch-info" data-toggle="tab"><span class="glyphicon glyphicon-plus"></span> Add</a></li>-->
+      <li class="active"><a href="#batch-report" data-toggle="tab"><span class="glyphicon glyphicon-th-list"></span> Report</a></li>
+      <!--<li class=""><a href="#batch-test" data-toggle="tab"><span class="glyphicon glyphicon-th-list"></span> Test</a></li>-->
+    </ul>
+  </div>
+</div>
+
+<div class="tab-content">
+
+
+
+  <div class="tab-pane active" id="batch-report">
+
+    <div class="container2" >
+
+
+
+      <form name="config" method="post" id="config">
+        <div align="center" class="form-group" >  <textarea name="sql"   style="width:800px;" class="form-control"  rows="2" placeholder="Please input SQL,and the table name is 'commitinfo',such as 'select * from commitinfo'."></textarea>
+          <button type="button" class="btn btn-default" onclick="AddHandlingFeeToRefund()">execute</button>
+        </div>
+
+
+        <!--<div><input name="page" type="text"/></div>-->
+       <!--<div ><button type="button" class="btn btn-default" onclick="AddHandlingFeeToRefund()">add</button></div>-->
+      </form>
+      <form name="search" class="form-inline" method="post" id="search" role="form">
+      <div class="form-group" >
+
+          <label  class="sr-only">time:</label>
+          <input type="text"  style="width: 120px;height: auto" class="form-control" name="starttime" id="starttime" placeholder="starttime">-
+          <input type="text" style="width: 120px;height: auto" class="form-control" name="endtime" id="endtime" placeholder="endtime">
+
+        <label  class="sr-only">project:</label>
+        <select name="project"  class="form-control" style="width: 90px;">
+          <option value="cctg">cctg</option>
+          <option value="cctg-fork">cctg-fork</option>
+          <option value="cctg-dev">cctg-dev</option>
+        </select>
+
+
+          <label  class="sr-only">repository:</label>
+          <input type="text"  name="repository"   style="width: 80px;height: auto" class="form-control" id="repository" >
+
+          <label  class="sr-only">branch:</label>
+          <input type="text" name="branch" style="width: 80px;height: auto" class="form-control" id="branch" >
+
+          <label  class="sr-only">author:</label>
+          <input type="text"  name="author"  style="width: 80px;height: auto" class="form-control" id="author" >
+
+          <button type="button" id="search-button" class="btn btn-default" onclick="searchcommint()">search</button>
+      </div>
+
+          <!--<div class="controls input-append date form_datetime" >-->
+              <!--<input size="16" type="text" value="" readonly>-->
+
+          <!--</div>-->
+          <!--&lt;!&ndash;<input type="test" id="dtp_input1" value="" /><br/>&ndash;&gt;-->
+          <!--<input name="endtime" id="endtime"   class="controls input-append date form_datetime" type="text" style="width:160px"/>-->
+
+
+      </form>
+
+
+
+
+      <table id="example" class="display" width="100%">
+        <thead>
+        <tr>
+          <!--<th>id</th>-->
+          <th width="80px">time</th>
+          <th width="30px">project</th>
+          <th width="30px">repository</th>
+          <th width="80px">branch</th>
+          <th width="50px">type</th>
+          <th width="80px">author</th>
+          <th width="80px">email</th>
+          <th width="200px">commits</th>
+
+        </tr>
+        </thead>
+        <tbody>
+          <!--<tr >-->
+            <!--<td width="75"><div align="center">21</div></td>-->
+            <!--<td width="100"><div align="center">12</div></td>-->
+            <!--<td width="150"><div align="center">21</div></td>-->
+            <!--<td width="150"><div align="center">212</div></td>-->
+            <!--<td width="200" style="word-break:break-all"><div align="center">12</div></td>-->
+            <!--<td width="200" style="word-break:break-all"><div align="center">12</div></td>-->
+            <!--<td width="200" style="word-break:break-all"><div align="center">12</div></td>-->
+            <!--<td width="200" style="word-break:break-all"><div align="center">21</div></td>-->
+            <!--<td width="200" style="word-break:break-all"><div align="center">212</div></td>-->
+          <!--</tr>-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>
