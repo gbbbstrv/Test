@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<!-- saved from url=(0105)https://confluence.atlassian.com/bitbucketserver/post-service-webhook-for-bitbucket-server-776640367.html -->
+<html lang="en" class="aui-responsive" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/gtm.js"></script><script type="text/javascript" async="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/roundtrip.js"></script><script type="text/javascript" async="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/e8taqq6v"></script><script type="text/javascript" async="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/analytics.js"></script><script type="text/javascript" async="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/fbevents.js"></script>
+    <!-- ADM-76246 - Add Google Webmaster Tools site verification code to Custom HTML on CAC -->
+<meta name="google-site-verification" content="WJJ7tHb2VT43pW6XPfWrJWJecm-VO42XsG7KVG_Dp8E">
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="ajs-page-title" content="POST service webhook for Bitbucket Server">
+<meta name="ajs-page-id" content="776640367">
+<meta name="ajs-space-key" content="BitbucketServer">
+<meta name="ajs-space-name" content="Bitbucket Server latest (4.5)">
+<meta name="ajs-base-url" content="">
+<meta name="ajs-comment-url" content="/plugins/servlet/scroll-viewport/comment">
+
+<meta id="atlassian-token" name="atlassian-token" content="802a49f3e0e8b1d683c86a3d853fa939dd13cb2d">
+
+    <title>POST service webhook for Bitbucket Server - Atlassian Documentation</title>
+    <link rel="icon" type="image/png" href="https://confluence.atlassian.com/imgs/favicon.png">
+<link rel="stylesheet" href="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/codemirror.min.css" media="all">
+<link rel="stylesheet" href="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/neat.min.css" media="all">
+<link rel="stylesheet" href="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/aui.css" media="all">
+<link rel="stylesheet" href="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/aui-experimental.css" media="all">
+<!--[if IE 9]>
+<link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/5.8.13/css/aui-ie9.css" media="all"><![endif]-->
+<link rel="stylesheet" media="all" href="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/main.css">
+
+    <script type="text/javascript" id="analytics-js" async="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/analytics.min.js"></script><script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/jquery.min.js"></script>
+<script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/codemirror.min.js"></script>
+<script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/javascript.min.js"></script>
+<script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/xml.min.js"></script>
+<script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/htmlmixed.min.js"></script>
+<script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/shell.min.js"></script>
+<script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/clike.min.js"></script>
+<script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/lua.min.js"></script>
+<script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/properties.min.js"></script>
+<script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/underscore-min.js"></script>
+<script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/almond.js"></script>
+<script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/aui.min.js"></script>
+<script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/aui-soy.min.js"></script>
+<script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/aui-experimental.min.js"></script><style type="text/css"></style>
+
+<style type="text/css">.atlwdg-blanket {background: black;height: 100%;left: 0;opacity: .5;position: fixed;top: 0;width: 100%;z-index: 1000000;}.atlwdg-popup {background: white;border: 1px solid #ccc;position: fixed;top: 0;right: 0;bottom: 0;left: 0;margin: auto;z-index: 10000011;border-radius: 5px;background-clip: padding-box;overflow: hidden;width: 810px;height: 0;max-height: calc(100% - 100px);}#atlwdg-frame {height: 100%;width: 100%;}.atlwdg-hidden {visibility: hidden;}.atlwdg-trigger {position: fixed;background: #205081;padding: 5px;border: 2px solid white;border-top: none;font-weight: bold;color: white !important;display: block;white-space: nowrap;text-decoration: none !important;font-family: Arial, Helvetica, sans-serif;font-size: 12px;-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);border-radius: 0 0 5px 5px;}.atlwdg-trigger.atlwdg-TOP {left: 45%;top: 0;}.atlwdg-trigger.atlwdg-RIGHT {left: 100%;top: 40%;-webkit-transform: rotate(90deg);-webkit-transform-origin: top left;-moz-transform: rotate(90deg);-moz-transform-origin: top left;-ms-transform: rotate(90deg);-ms-transform-origin: top left;transform: rotate(90deg);transform-origin: top left;}.atlwdg-trigger.atlwdg-SUBTLE {right: 0;bottom: 0;border: 1px solid #ccc;border-bottom: none;border-right: none;background-color: #f5f5f5;color: #444 !important;font-size: 11px;padding: 6px;-webkit-box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.5);box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.5);border-radius: 2px 0 0 0;}.atlwdg-loading {position: fixed;top: 0;right: 0;bottom: 0;left: 0;margin: auto;height: 40px;width: 40px;z-index: 1000001;border-radius: 5px;background-color: #fff;background-image: url('data:image/gif;base64,R0lGODlhEAAQAMQAAP///+7u7t3d3bu7u6qqqpmZmYiIiHd3d2ZmZlVVVURERDMzMyIiIhEREQARAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFBwAQACwAAAAAEAAQAAAFdyAkQgGJJOWoQgIjBM8jkKsoPEzgyMGsCjPDw7ADpkQBxRDmSCRetpRA6Rj4kFBkgLC4IlUGhbNQIwXOYYWCXDufzYPDMaoKGBoKb886OjAKdgZAAgQkfCwzAgsDBAUCgl8jAQkHEAVkAoA1AgczlyIDczUDA2UhACH5BAUHABAALAAAAAAPABAAAAVjICSO0IGIATkqIiMKDaGKC8Q49jPMYsE0hQdrlABCGgvT45FKiRKQhWA0mPKGPAgBcTjsspBCAoH4gl+FmXNEUEBVAYHToJAVZK/XWoQQDAgBZioHaX8igigFKYYQVlkCjiMhACH5BAUHABAALAAAAAAQAA8AAAVgICSOUGGQqIiIChMESyo6CdQGdRqUENESI8FAdFgAFwqDISYwPB4CVSMnEhSej+FogNhtHyfRQFmIol5owmEta/fcKITB6y4choMBmk7yGgSAEAJ8JAVDgQFmKUCCZnwhACH5BAUHABAALAAAAAAQABAAAAViICSOYkGe4hFAiSImAwotB+si6Co2QxvjAYHIgBAqDoWCK2Bq6A40iA4yYMggNZKwGFgVCAQZotFwwJIF4QnxaC9IsZNgLtAJDKbraJCGzPVSIgEDXVNXA0JdgH6ChoCKKCEAIfkEBQcAEAAsAAAAABAADgAABUkgJI7QcZComIjPw6bs2kINLB5uW9Bo0gyQx8LkKgVHiccKVdyRlqjFSAApOKOtR810StVeU9RAmLqOxi0qRG3LptikAVQEh4UAACH5BAUHABAALAAAAAAQABAAAAVxICSO0DCQKBQQonGIh5AGB2sYkMHIqYAIN0EDRxoQZIaC6bAoMRSiwMAwCIwCggRkwRMJWKSAomBVCc5lUiGRUBjO6FSBwWggwijBooDCdiFfIlBRAlYBZQ0PWRANaSkED1oQYHgjDA8nM3kPfCmejiEAIfkEBQcAEAAsAAAAABAAEAAABWAgJI6QIJCoOIhFwabsSbiFAotGMEMKgZoB3cBUQIgURpFgmEI0EqjACYXwiYJBGAGBgGIDWsVicbiNEgSsGbKCIMCwA4IBCRgXt8bDACkvYQF6U1OADg8mDlaACQtwJCEAIfkEBQcAEAAsAAABABAADwAABV4gJEKCOAwiMa4Q2qIDwq4wiriBmItCCREHUsIwCgh2q8MiyEKODK7ZbHCoqqSjWGKI1d2kRp+RAWGyHg+DQUEmKliGx4HBKECIMwG61AgssAQPKA19EAxRKz4QCVIhACH5BAUHABAALAAAAAAQABAAAAVjICSOUBCQqHhCgiAOKyqcLVvEZOC2geGiK5NpQBAZCilgAYFMogo/J0lgqEpHgoO2+GIMUL6p4vFojhQNg8rxWLgYBQJCASkwEKLC17hYFJtRIwwBfRAJDk4ObwsidEkrWkkhACH5BAUHABAALAAAAQAQAA8AAAVcICSOUGAGAqmKpjis6vmuqSrUxQyPhDEEtpUOgmgYETCCcrB4OBWwQsGHEhQatVFhB/mNAojFVsQgBhgKpSHRTRxEhGwhoRg0CCXYAkKHHPZCZRAKUERZMAYGMCEAIfkEBQcAEAAsAAABABAADwAABV0gJI4kFJToGAilwKLCST6PUcrB8A70844CXenwILRkIoYyBRk4BQlHo3FIOQmvAEGBMpYSop/IgPBCFpCqIuEsIESHgkgoJxwQAjSzwb1DClwwgQhgAVVMIgVyKCEAIfkECQcAEAAsAAAAABAAEAAABWQgJI5kSQ6NYK7Dw6xr8hCw+ELC85hCIAq3Am0U6JUKjkHJNzIsFAqDqShQHRhY6bKqgvgGCZOSFDhAUiWCYQwJSxGHKqGAE/5EqIHBjOgyRQELCBB7EAQHfySDhGYQdDWGQyUhADs=');background-repeat: no-repeat;background-position: center center;}@media print {.atlwdg-trigger { display: none; }}</style><script async="true" type="text/javascript" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/7Q44S6SDXNA4NE4TSAUFGF"></script><div style="width: 1px; height: 1px; display: inline; position: absolute;"><img height="1" width="1" style="border-style:none;" alt="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/out"><img height="1" width="1" style="border-style:none;" alt="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/out(1)"></div><div style="width: 1px; height: 1px; display: inline; position: absolute;"><img height="1" width="1" style="border-style:none;" alt="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/out(2)">
+<img height="1" width="1" style="border-style:none;" alt="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/out(3)">
+<img height="1" width="1" style="border-style:none;" alt="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/out(4)">
+<img height="1" width="1" style="border-style:none;" alt="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/out(5)">
+<img height="1" width="1" style="border-style:none;" alt="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/out(6)">
+<img height="1" width="1" style="border-style:none;" alt="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/out(7)">
+<img height="1" width="1" style="border-style:none;" alt="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/out(8)">
+<img height="1" width="1" style="border-style:none;" alt="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/out(9)">
+<img height="1" width="1" style="border-style:none;" alt="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/saved_resource">
+<!-- rmx placeholder -->
+<img src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/seg" width="1" height="1">
+<img height="1" width="1" style="border-style:none;" alt="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/saved_resource(1)">  																									
+
+<img height="1" width="1" style="border-style:none;" alt="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/saved_resource(2)">
+
+<img src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/seg(1)" width="1" height="1">
+<img src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/seg(2)" width="1" height="1">
+<img height="1" width="1" style="border-style:none;" alt="" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/saved_resource(3)">
+<!-- rmx placeholder -->
+<img src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/seg(3)" width="1" height="1">
+</div></head>
+
+<body class=" aui-layout aui-theme-default aui-page-fixed dac viewport" data-aui-version="5.8.13">
+<div id="page">
+    <header id="header" role="banner">
+    <nav class="aui-header aui-dropdown2-trigger-group" role="navigation" data-aui-responsive="true">
+        <div class="aui-header-inner">
+            <div class="aui-header-primary">
+                <h1 id="logo" class="aui-header-logo aui-header-logo-design">
+                    <a href="https://confluence.atlassian.com/"><span class="aui-header-logo-device">Atlassian Documentation</span></a>
+                </h1>
+            </div>
+            <div class="aui-header-secondary">
+                <ul class="aui-nav" resolved="">
+                    <li>
+                        <form id="quicksearch" action="https://confluence.atlassian.com/dosearchsite.action" method="get" class="aui">
+                            <div class="search-input-wrapper">
+    <input aria-label="Search" id="search-input" class="text medium-field" name="queryString" type="text" placeholder="Search...">
+</div>
+
+                            <button type="submit" style="display:none"></button>
+                        </form>
+                                                                    </li>
+
+                    
+                    
+                    <li>
+                                                                            <a href="https://confluence.atlassian.com/login.action?os_destination=/bitbucketserver/post-service-webhook-for-bitbucket-server-776640367.html">Log in</a>
+                                            </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    <section id="content" role="main">
+      <div data-role="content" class="content-panel">
+        <input type="hidden" id="current-page-id" value="776640367">
+        <div class="aui-page-panel cac-col">
+            <div class="aui-page-panel-inner">
+                                                    <div class="aui-page-panel-nav navigation-panel hidden-md hidden-sm cac-col-1-3">
+                        
+    
+
+
+<nav class="expanding-nav aui-navgroup aui-navgroup-vertical">
+    <div class="aui-navgroup-inner">
+        <ul class="aui-nav" resolved="">
+
+                                            <li class="active expanded" data-page-id="776639749">
+                    <button aria-label="Toggle menu for Bitbucket Server latest (4.5)" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-documentation-home-776639749.html">Bitbucket Server latest (4.5)</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640896">
+                                                    <button aria-label="Toggle menu for Getting started" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/getting-started-776640896.html">Getting started</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640981">
+                                                    <button aria-label="Toggle menu for Supported platforms" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/supported-platforms-776640981.html">Supported platforms</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="779362568">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/supported-platforms-details-779362568.html">Supported platforms details</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640933">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/using-bitbucket-server-in-the-enterprise-776640933.html">Using Bitbucket Server in the enterprise</a>
+                            </li>
+                    <li data-page-id="776640906">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/installing-and-upgrading-git-776640906.html">Installing and upgrading Git</a>
+                            </li>
+                    <li data-page-id="776640934">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/configuring-jira-integration-in-the-setup-wizard-776640934.html">Configuring JIRA integration in the Setup Wizard</a>
+                            </li>
+                    <li data-page-id="776640936">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/getting-started-with-git-and-bitbucket-server-776640936.html">Getting started with Git and Bitbucket Server</a>
+                            </li>
+                    <li data-page-id="776640909">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/importing-code-from-an-existing-project-776640909.html">Importing code from an existing project</a>
+                            </li>
+                    <li data-page-id="775684143">
+                                                    <button aria-label="Toggle menu for Bitbucket Server tutorials" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-tutorials-775684143.html">Bitbucket Server tutorials</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="775520326">
+                                                    <button aria-label="Toggle menu for Tutorial: Work with Bitbucket Server" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/tutorial-work-with-bitbucket-server-775520326.html">Tutorial: Work with Bitbucket Server</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776798217">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/set-up-sourcetree-to-work-with-bitbucket-server-776798217.html">Set up SourceTree to work with Bitbucket Server</a>
+                            </li>
+                    <li data-page-id="775880788">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/create-a-personal-repository-in-bitbucket-server-775880788.html">Create a personal repository in Bitbucket Server</a>
+                            </li>
+                    <li data-page-id="776798211">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/clone-your-repository-and-manage-files-locally-776798211.html">Clone your repository and manage files locally</a>
+                            </li>
+                    <li data-page-id="776798246">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/commit-and-push-changes-to-bitbucket-server-776798246.html">Commit and push changes to Bitbucket Server</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776639769">
+                                                    <button aria-label="Toggle menu for Using Bitbucket Server" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/using-bitbucket-server-776639769.html">Using Bitbucket Server</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776639848">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/creating-projects-776639848.html">Creating projects</a>
+                            </li>
+                    <li data-page-id="776639815">
+                                                    <button aria-label="Toggle menu for Creating repositories" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/creating-repositories-776639815.html">Creating repositories</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776639832">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/creating-personal-repositories-776639832.html">Creating personal repositories</a>
+                            </li>
+                    <li data-page-id="776639836">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/using-repository-hooks-776639836.html">Using repository hooks</a>
+                            </li>
+                    <li data-page-id="776639846">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/permanently-authenticating-with-git-repositories-776639846.html">Permanently authenticating with Git repositories</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="790632786">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/clone-a-repository-790632786.html">Clone a repository</a>
+                            </li>
+                    <li data-page-id="776639770">
+                                                    <button aria-label="Toggle menu for Controlling access to code" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/controlling-access-to-code-776639770.html">Controlling access to code</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776639807">
+                                                    <button aria-label="Toggle menu for Using branch permissions" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html">Using branch permissions</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776639814">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/branch-permission-patterns-776639814.html">Branch permission patterns</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776639771">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/using-repository-permissions-776639771.html">Using repository permissions</a>
+                            </li>
+                    <li data-page-id="776639801">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/using-project-permissions-776639801.html">Using project permissions</a>
+                            </li>
+                    <li data-page-id="776639799">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/allowing-public-access-to-code-776639799.html">Allowing public access to code</a>
+                            </li>
+                    <li data-page-id="776639772">
+                                                    <button aria-label="Toggle menu for Using SSH keys to secure Git operations" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/using-ssh-keys-to-secure-git-operations-776639772.html">Using SSH keys to secure Git operations</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776639788">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/creating-ssh-keys-776639788.html">Creating SSH keys</a>
+                            </li>
+                    <li data-page-id="776639793">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/ssh-user-keys-for-personal-use-776639793.html">SSH user keys for personal use</a>
+                            </li>
+                    <li data-page-id="776639781">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/ssh-access-keys-for-system-use-776639781.html">SSH access keys for system use</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776639944">
+                                                    <button aria-label="Toggle menu for Workflow strategies in Bitbucket Server" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/workflow-strategies-in-bitbucket-server-776639944.html">Workflow strategies in Bitbucket Server</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776639968">
+                                                    <button aria-label="Toggle menu for Using branches in Bitbucket Server" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/using-branches-in-bitbucket-server-776639968.html">Using branches in Bitbucket Server</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776639993">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/automatic-branch-merging-776639993.html">Automatic branch merging</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776639958">
+                                                    <button aria-label="Toggle menu for Using forks in Bitbucket Server" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/using-forks-in-bitbucket-server-776639958.html">Using forks in Bitbucket Server</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776639961">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/keeping-forks-synchronized-776639961.html">Keeping forks synchronized</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776639997">
+                                                    <button aria-label="Toggle menu for Using pull requests in Bitbucket Server" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/using-pull-requests-in-bitbucket-server-776639997.html">Using pull requests in Bitbucket Server</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="808488431">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/create-a-pull-request-808488431.html">Create a pull request</a>
+                            </li>
+                    <li data-page-id="808488540">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/review-and-discuss-a-pull-request-808488540.html">Review and discuss a pull request</a>
+                            </li>
+                    <li data-page-id="808488562">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/merge-a-pull-request-808488562.html">Merge a pull request</a>
+                            </li>
+                    <li data-page-id="808488581">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/search-for-pull-requests-808488581.html">Search for pull requests</a>
+                            </li>
+                    <li data-page-id="776640039">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/checks-for-merging-pull-requests-776640039.html">Checks for merging pull requests</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776639933">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/notifications-776639933.html">Notifications</a>
+                            </li>
+                    <li data-page-id="776639995">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/markdown-syntax-guide-776639995.html">Markdown syntax guide</a>
+                            </li>
+                    <li data-page-id="776639934">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/requesting-add-ons-776639934.html">Requesting add-ons</a>
+                            </li>
+                    <li data-page-id="776639863">
+                                                    <button aria-label="Toggle menu for Integrating Bitbucket Server with Atlassian applications" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/integrating-bitbucket-server-with-atlassian-applications-776639863.html">Integrating Bitbucket Server with Atlassian applications</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776639874">
+                                                    <button aria-label="Toggle menu for JIRA integration" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/jira-integration-776639874.html">JIRA integration</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="802599018">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/using-smart-commits-in-bitbucket-server-802599018.html">Using Smart Commits in Bitbucket Server</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776639911">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/hipchat-notifications-776639911.html">HipChat notifications</a>
+                            </li>
+                    <li data-page-id="776639871">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bamboo-integration-776639871.html">Bamboo integration</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="814204781">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/code-search-eap-search-for-code-in-bitbucket-server-814204781.html">Code Search EAP - Search for code in Bitbucket Server</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640044" class="active expanded">
+                                                    <button aria-label="Toggle menu for Administering Bitbucket Server" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/administering-bitbucket-server-776640044.html">Administering Bitbucket Server</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640439">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/users-and-groups-776640439.html">Users and groups</a>
+                            </li>
+                    <li data-page-id="776640394">
+                                                    <button aria-label="Toggle menu for External user directories" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/external-user-directories-776640394.html">External user directories</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640403">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/connecting-bitbucket-server-to-an-existing-ldap-directory-776640403.html">Connecting Bitbucket Server to an existing LDAP directory</a>
+                            </li>
+                    <li data-page-id="776640400">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/connecting-bitbucket-server-to-jira-for-user-management-776640400.html">Connecting Bitbucket Server to JIRA for user management</a>
+                            </li>
+                    <li data-page-id="776640402">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/delegating-bitbucket-server-authentication-to-an-ldap-directory-776640402.html">Delegating Bitbucket Server authentication to an LDAP directory</a>
+                            </li>
+                    <li data-page-id="776640399">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/connecting-bitbucket-server-to-crowd-776640399.html">Connecting Bitbucket Server to Crowd</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640369">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/global-permissions-776640369.html">Global permissions</a>
+                            </li>
+                    <li data-page-id="776640427">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/setting-up-your-mail-server-776640427.html">Setting up your mail server</a>
+                            </li>
+                    <li data-page-id="776640408">
+                                                    <button aria-label="Toggle menu for Linking Bitbucket Server with JIRA" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/linking-bitbucket-server-with-jira-776640408.html">Linking Bitbucket Server with JIRA</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640410">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/using-custom-jira-issue-keys-with-bitbucket-server-776640410.html">Using custom JIRA issue keys with Bitbucket Server</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640378">
+                                                    <button aria-label="Toggle menu for Connecting Bitbucket Server to an external database" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/connecting-bitbucket-server-to-an-external-database-776640378.html">Connecting Bitbucket Server to an external database</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640382">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/connecting-bitbucket-server-to-mysql-776640382.html">Connecting Bitbucket Server to MySQL</a>
+                            </li>
+                    <li data-page-id="776640379">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/connecting-bitbucket-server-to-oracle-776640379.html">Connecting Bitbucket Server to Oracle</a>
+                            </li>
+                    <li data-page-id="776640389">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/connecting-bitbucket-server-to-postgresql-776640389.html">Connecting Bitbucket Server to PostgreSQL</a>
+                            </li>
+                    <li data-page-id="776640385">
+                                                    <button aria-label="Toggle menu for Connecting Bitbucket Server to SQL Server" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/connecting-bitbucket-server-to-sql-server-776640385.html">Connecting Bitbucket Server to SQL Server</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640388">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/transitioning-from-jtds-to-microsoft-s-jdbc-driver-776640388.html">Transitioning from jTDS to Microsoft's JDBC driver</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640406">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/migrating-bitbucket-server-to-another-server-776640406.html">Migrating Bitbucket Server to another server</a>
+                            </li>
+                    <li data-page-id="776640392">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/specifying-the-base-url-for-bitbucket-server-776640392.html">Specifying the base URL for Bitbucket Server</a>
+                            </li>
+                    <li data-page-id="776640424">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/configuring-the-application-navigator-776640424.html">Configuring the application navigator</a>
+                            </li>
+                    <li data-page-id="776640366" class="active expanded">
+                                                    <button aria-label="Toggle menu for Managing add-ons" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/managing-add-ons-776640366.html">Managing add-ons</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640367" class="current expanded">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/post-service-webhook-for-bitbucket-server-776640367.html">POST service webhook for Bitbucket Server</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640417">
+                                                    <button aria-label="Toggle menu for Audit logging in Bitbucket Server" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/audit-logging-in-bitbucket-server-776640417.html">Audit logging in Bitbucket Server</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640423">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/audit-events-in-bitbucket-server-776640423.html">Audit events in Bitbucket Server</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640045">
+                                                    <button aria-label="Toggle menu for Advanced actions" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/advanced-actions-776640045.html">Advanced actions</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640183">
+                                                    <button aria-label="Toggle menu for Running the Bitbucket Server installer" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/running-the-bitbucket-server-installer-776640183.html">Running the Bitbucket Server installer</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="815247203">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/code-search-eap-running-the-bitbucket-server-installer-815247203.html">Code Search EAP - Running the Bitbucket Server installer</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640098">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/automated-setup-for-bitbucket-server-776640098.html">Automated setup for Bitbucket Server</a>
+                            </li>
+                    <li data-page-id="776640144">
+                                                    <button aria-label="Toggle menu for Starting and stopping Bitbucket Server" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/starting-and-stopping-bitbucket-server-776640144.html">Starting and stopping Bitbucket Server</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="815247623">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/code-search-eap-starting-and-stopping-bitbucket-server-815247623.html">Code Search EAP - Starting and stopping Bitbucket Server</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640148">
+                                                    <button aria-label="Toggle menu for Install Bitbucket Server from an archive file" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/install-bitbucket-server-from-an-archive-file-776640148.html">Install Bitbucket Server from an archive file</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="815247208">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/code-search-eap-install-bitbucket-server-from-an-archive-file-815247208.html">Code Search EAP - Install Bitbucket Server from an archive file</a>
+                            </li>
+                    <li data-page-id="815577748">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/code-search-eap-install-and-configure-a-remote-elasticsearch-instance-815577748.html">Code Search EAP - Install and configure a remote Elasticsearch instance</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640157">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/running-bitbucket-server-as-a-linux-service-776640157.html">Running Bitbucket Server as a Linux service</a>
+                            </li>
+                    <li data-page-id="776640048">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/running-bitbucket-server-as-a-windows-service-776640048.html">Running Bitbucket Server as a Windows service</a>
+                            </li>
+                    <li data-page-id="776640155">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-config-properties-776640155.html">Bitbucket Server config properties</a>
+                            </li>
+                    <li data-page-id="776640099">
+                                                    <button aria-label="Toggle menu for Proxying and securing Bitbucket Server" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/proxying-and-securing-bitbucket-server-776640099.html">Proxying and securing Bitbucket Server</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640127">
+                                                    <button aria-label="Toggle menu for Securing Bitbucket Server with Tomcat using SSL" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/securing-bitbucket-server-with-tomcat-using-ssl-776640127.html">Securing Bitbucket Server with Tomcat using SSL</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640132">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/draft-securing-stash-with-tomcat-using-ssl-776640132.html">DRAFT - Securing Stash with Tomcat using SSL</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640122">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/integrating-bitbucket-server-with-apache-http-server-776640122.html">Integrating Bitbucket Server with Apache HTTP Server</a>
+                            </li>
+                    <li data-page-id="776640117">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/securing-bitbucket-server-with-apache-using-ssl-776640117.html">Securing Bitbucket Server with Apache using SSL</a>
+                            </li>
+                    <li data-page-id="776640112">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/securing-bitbucket-server-behind-nginx-using-ssl-776640112.html">Securing Bitbucket Server behind nginx using SSL</a>
+                            </li>
+                    <li data-page-id="779303273">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/securing-bitbucket-server-behind-haproxy-using-ssl-779303273.html">Securing Bitbucket Server behind HAProxy using SSL</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640358">
+                                                    <button aria-label="Toggle menu for Enabling SSH access to Git repositories in Bitbucket Server" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/enabling-ssh-access-to-git-repositories-in-bitbucket-server-776640358.html">Enabling SSH access to Git repositories in Bitbucket Server</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640364">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/setting-up-ssh-port-forwarding-776640364.html">Setting up SSH port forwarding</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640069">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/using-diff-transcoding-in-bitbucket-server-776640069.html">Using diff transcoding in Bitbucket Server</a>
+                            </li>
+                    <li data-page-id="776640049">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/changing-the-port-that-bitbucket-server-listens-on-776640049.html">Changing the port that Bitbucket Server listens on</a>
+                            </li>
+                    <li data-page-id="776640153">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/moving-bitbucket-server-to-a-different-context-path-776640153.html">Moving Bitbucket Server to a different context path</a>
+                            </li>
+                    <li data-page-id="776640047">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/running-bitbucket-server-with-a-dedicated-user-776640047.html">Running Bitbucket Server with a dedicated user</a>
+                            </li>
+                    <li data-page-id="776640147">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-debug-logging-776640147.html">Bitbucket Server debug logging</a>
+                            </li>
+                    <li data-page-id="776640050">
+                                                    <button aria-label="Toggle menu for Data recovery and backups" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/data-recovery-and-backups-776640050.html">Data recovery and backups</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640064">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/using-the-bitbucket-server-backup-client-776640064.html">Using the Bitbucket Server Backup Client</a>
+                            </li>
+                    <li data-page-id="776640056">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/using-bitbucket-server-diy-backup-776640056.html">Using Bitbucket Server DIY Backup</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640158">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/lockout-recovery-process-776640158.html">Lockout recovery process</a>
+                            </li>
+                    <li data-page-id="776640073">
+                                                    <button aria-label="Toggle menu for Scaling Bitbucket Server" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/scaling-bitbucket-server-776640073.html">Scaling Bitbucket Server</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640088">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/scaling-bitbucket-server-for-continuous-integration-performance-776640088.html">Scaling Bitbucket Server for Continuous Integration performance</a>
+                            </li>
+                    <li data-page-id="776640089">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-production-server-data-776640089.html">Bitbucket Server production server data</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640137">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/high-availability-for-bitbucket-server-776640137.html">High availability for Bitbucket Server</a>
+                            </li>
+                    <li data-page-id="776640164">
+                                                    <button aria-label="Toggle menu for Clustering with Bitbucket Data Center" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/clustering-with-bitbucket-data-center-776640164.html">Clustering with Bitbucket Data Center</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640166">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/installing-bitbucket-data-center-776640166.html">Installing Bitbucket Data Center</a>
+                            </li>
+                    <li data-page-id="776640178">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/adding-cluster-nodes-to-bitbucket-data-center-776640178.html">Adding cluster nodes to Bitbucket Data Center</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640189">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/enabling-jmx-counters-for-performance-monitoring-776640189.html">Enabling JMX counters for performance monitoring</a>
+                            </li>
+                    <li data-page-id="776640193">
+                                                    <button aria-label="Toggle menu for Getting started with Bitbucket Server and AWS" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/getting-started-with-bitbucket-server-and-aws-776640193.html">Getting started with Bitbucket Server and AWS</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640254">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/quick-start-with-bitbucket-server-and-aws-776640254.html">Quick Start with Bitbucket Server and AWS</a>
+                            </li>
+                    <li data-page-id="776640204">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/launching-bitbucket-server-in-aws-manually-776640204.html">Launching Bitbucket Server in AWS manually</a>
+                            </li>
+                    <li data-page-id="776640308">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/administering-bitbucket-server-in-aws-776640308.html">Administering Bitbucket Server in AWS</a>
+                            </li>
+                    <li data-page-id="776640282">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/recommendations-for-running-bitbucket-server-in-aws-776640282.html">Recommendations for running Bitbucket Server in AWS</a>
+                            </li>
+                    <li data-page-id="776640333">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/securing-bitbucket-server-in-aws-776640333.html">Securing Bitbucket Server in AWS</a>
+                            </li>
+                    <li data-page-id="776640203">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/using-bitbucket-server-diy-backup-in-aws-776640203.html">Using Bitbucket Server DIY Backup in AWS</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640365">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/disabling-http-s-access-to-git-repositories-in-bitbucket-server-776640365.html">Disabling HTTP(S) access to Git repositories in Bitbucket Server</a>
+                            </li>
+                    <li data-page-id="776640046">
+                                                    <button aria-label="Toggle menu for Smart Mirroring" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/smart-mirroring-776640046.html">Smart Mirroring</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="790632894">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/set-up-a-mirror-790632894.html">Set up a mirror</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="794364846">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/git-large-file-storage-794364846.html">Git Large File Storage</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="785318611">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/updating-your-bitbucket-server-license-details-785318611.html">Updating your Bitbucket Server License Details</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640503">
+                                                    <button aria-label="Toggle menu for Releases" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/releases-776640503.html">Releases</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640551">
+                                                    <button aria-label="Toggle menu for Bitbucket Server upgrade guide" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-upgrade-guide-776640551.html">Bitbucket Server upgrade guide</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="779302412">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/how-to-update-your-add-on-779302412.html">How to update your add-on</a>
+                            </li>
+                    <li data-page-id="779292682">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/upgrade-bitbucket-server-from-an-archive-file-779292682.html">Upgrade Bitbucket Server from an archive file</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640855">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/end-of-support-announcements-for-bitbucket-server-776640855.html">End of support announcements for Bitbucket Server</a>
+                            </li>
+                    <li data-page-id="815584003">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-code-search-early-access-program-eap-815584003.html">Bitbucket Server Code Search Early Access Program (EAP)</a>
+                            </li>
+                    <li data-page-id="815594168">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-4-5-release-notes-815594168.html">Bitbucket Server 4.5 release notes</a>
+                            </li>
+                    <li data-page-id="806260979">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-4-4-release-notes-806260979.html">Bitbucket Server 4.4 release notes</a>
+                            </li>
+                    <li data-page-id="794211212">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-4-3-release-notes-794211212.html">Bitbucket Server 4.3 release notes</a>
+                            </li>
+                    <li data-page-id="792302919">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-4-2-release-notes-792302919.html">Bitbucket Server 4.2 release notes</a>
+                            </li>
+                    <li data-page-id="785330714">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-4-1-release-notes-785330714.html">Bitbucket Server 4.1 release notes</a>
+                            </li>
+                    <li data-page-id="777005372">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-4-0-release-notes-777005372.html">Bitbucket Server 4.0 release notes</a>
+                            </li>
+                    <li data-page-id="776640527">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-3-11-release-notes-776640527.html">Stash 3.11 release notes</a>
+                            </li>
+                    <li data-page-id="776640856">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-3-10-release-notes-776640856.html">Stash 3.10 release notes</a>
+                            </li>
+                    <li data-page-id="776640784">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-3-9-release-notes-776640784.html">Stash 3.9 release notes</a>
+                            </li>
+                    <li data-page-id="776640641">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-3-8-release-notes-776640641.html">Stash 3.8 release notes</a>
+                            </li>
+                    <li data-page-id="776640662">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-3-7-release-notes-776640662.html">Stash 3.7 release notes</a>
+                            </li>
+                    <li data-page-id="776640766">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-3-6-release-notes-776640766.html">Stash 3.6 release notes</a>
+                            </li>
+                    <li data-page-id="776640623">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-3-5-release-notes-776640623.html">Stash 3.5 release notes</a>
+                            </li>
+                    <li data-page-id="776640512">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-3-4-release-notes-776640512.html">Stash 3.4 release notes</a>
+                            </li>
+                    <li data-page-id="776640609">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-3-3-release-notes-776640609.html">Stash 3.3 release notes</a>
+                            </li>
+                    <li data-page-id="776640815">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-3-2-release-notes-776640815.html">Stash 3.2 release notes</a>
+                            </li>
+                    <li data-page-id="776640600">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-3-1-release-notes-776640600.html">Stash 3.1 release notes</a>
+                            </li>
+                    <li data-page-id="776640827">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-3-0-release-notes-776640827.html">Stash 3.0 release notes</a>
+                            </li>
+                    <li data-page-id="776640587">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-2-12-release-notes-776640587.html">Stash 2.12 release notes</a>
+                            </li>
+                    <li data-page-id="776640568">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-2-11-release-notes-776640568.html">Stash 2.11 release notes</a>
+                            </li>
+                    <li data-page-id="776640504">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-2-10-release-notes-776640504.html">Stash 2.10 release notes</a>
+                            </li>
+                    <li data-page-id="776640682">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-2-9-release-notes-776640682.html">Stash 2.9 release notes</a>
+                            </li>
+                    <li data-page-id="776640573">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-2-8-release-notes-776640573.html">Stash 2.8 release notes</a>
+                            </li>
+                    <li data-page-id="776640842">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-2-7-release-notes-776640842.html">Stash 2.7 release notes</a>
+                            </li>
+                    <li data-page-id="776640848">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-2-6-release-notes-776640848.html">Stash 2.6 release notes</a>
+                            </li>
+                    <li data-page-id="776640564">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-2-5-release-notes-776640564.html">Stash 2.5 release notes</a>
+                            </li>
+                    <li data-page-id="776640805">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-2-4-release-notes-776640805.html">Stash 2.4 release notes</a>
+                            </li>
+                    <li data-page-id="776640690">
+                                                    <button aria-label="Toggle menu for Older releases" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/older-releases-776640690.html">Older releases</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640723">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-2-3-release-notes-776640723.html">Stash 2.3 release notes</a>
+                            </li>
+                    <li data-page-id="776640761">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-2-2-release-notes-776640761.html">Stash 2.2 release notes</a>
+                            </li>
+                    <li data-page-id="776640691">
+                                                    <button aria-label="Toggle menu for Stash 2.1 release notes" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/stash-2-1-release-notes-776640691.html">Stash 2.1 release notes</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640699">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-2-1-changelog-776640699.html">Stash 2.1 changelog</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640729">
+                                                    <button aria-label="Toggle menu for Stash 2.0 release notes" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/stash-2-0-release-notes-776640729.html">Stash 2.0 release notes</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640738">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-2-0-changelog-776640738.html">Stash 2.0 changelog</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640750">
+                                                    <button aria-label="Toggle menu for Stash 1.3 release notes" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/stash-1-3-release-notes-776640750.html">Stash 1.3 release notes</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640760">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-1-3-changelog-776640760.html">Stash 1.3 changelog</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640739">
+                                                    <button aria-label="Toggle menu for Stash 1.2 release notes" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/stash-1-2-release-notes-776640739.html">Stash 1.2 release notes</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640749">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-1-2-change-log-776640749.html">Stash 1.2 change log</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640714">
+                                                    <button aria-label="Toggle menu for Stash 1.1 release notes" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/stash-1-1-release-notes-776640714.html">Stash 1.1 release notes</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640722">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-1-1-change-log-776640722.html">Stash 1.1 change log</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640700">
+                                                    <button aria-label="Toggle menu for Stash 1.0 release notes" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/stash-1-0-release-notes-776640700.html">Stash 1.0 release notes</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640709">
+                                                    <button aria-label="Toggle menu for Stash 1.0 change log" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/stash-1-0-change-log-776640709.html">Stash 1.0 change log</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640711">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-1-0-1-release-notes-776640711.html">Stash 1.0.1 release notes</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640713">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-1-0-upgrade-guide-776640713.html">Stash 1.0 upgrade guide</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640597">
+                                                    <button aria-label="Toggle menu for Bitbucket Server security advisories" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-security-advisories-776640597.html">Bitbucket Server security advisories</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640598">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-security-advisory-2012-09-04-776640598.html">Stash security advisory 2012-09-04</a>
+                            </li>
+                    <li data-page-id="776640599">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/stash-security-advisory-2014-02-26-776640599.html">Stash security advisory 2014-02-26</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776639766">
+                                                    <button aria-label="Toggle menu for Git resources" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/git-resources-776639766.html">Git resources</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776639767">
+                                                    <button aria-label="Toggle menu for Basic Git commands" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html">Basic Git commands</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776639768">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/draft-basic-git-commands-776639768.html">DRAFT - Basic Git commands</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640880">
+                                                    <button aria-label="Toggle menu for Bitbucket Server FAQ" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-faq-776640880.html">Bitbucket Server FAQ</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="779298912">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-rebrand-faq-779298912.html">Bitbucket rebrand FAQ</a>
+                            </li>
+                    <li data-page-id="776640889">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/how-do-i-change-the-external-database-password-776640889.html">How do I change the external database password</a>
+                            </li>
+                    <li data-page-id="776640890">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-home-directory-776640890.html">Bitbucket Server home directory</a>
+                            </li>
+                    <li data-page-id="776640882">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/raising-a-request-with-atlassian-support-776640882.html">Raising a request with Atlassian Support</a>
+                            </li>
+                    <li data-page-id="776640885">
+                                                    <button aria-label="Toggle menu for Support policies" class="aui-button aui-button-link"></button><a href="https://confluence.atlassian.com/bitbucketserver/support-policies-776640885.html">Support policies</a>
+                    <div class="expander">
+                        <ul class="child-nav">
+                                                <li data-page-id="776640887">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bug-fixing-policy-776640887.html">Bug fixing policy</a>
+                            </li>
+                    <li data-page-id="776640886">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/new-features-policy-776640886.html">New features policy</a>
+                            </li>
+                    <li data-page-id="776640888">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/security-bugfix-policy-776640888.html">Security Bugfix Policy</a>
+                            </li>
+                    <li data-page-id="802588108">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/finding-your-bitbucket-server-support-entitlement-number-sen-802588108.html">Finding Your Bitbucket Server Support Entitlement Number (SEN)</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                    <li data-page-id="776640884">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/building-bitbucket-server-from-source-776640884.html">Building Bitbucket Server from source</a>
+                            </li>
+                    <li data-page-id="776640881">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/contributing-to-the-bitbucket-server-documentation-776640881.html">Contributing to the Bitbucket Server documentation</a>
+                            </li>
+                    <li data-page-id="776640894">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/collecting-analytics-for-bitbucket-server-776640894.html">Collecting analytics for Bitbucket Server</a>
+                            </li>
+                    <li data-page-id="776640895">
+                                                    <a href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-eap-how-to-update-your-add-on-776640895.html">Bitbucket Server EAP - How to update your add-on</a>
+                            </li>
+                                    </ul>
+                    </div>
+                            </li>
+                                    </ul>
+                    </div>
+                </li>
+            
+        </ul>
+    </div>
+</nav>
+<div id="nav-tree-expander">
+    <div class="grip">
+        <div class="arrow arrow-left"></div>
+    </div>
+</div>
+
+                    </div>
+                                <div class="aui-page-panel-content cac-col-2-3" id="main-content">
+                                            <div id="content-metadata">
+                            
+
+
+
+
+
+<div id="breadcrumbs">
+                                                                                                                                                                                                                                                                                                                                                                                            <button type="button" role="button" class="aui-button aui-dropdown2-trigger" aria-controls="space-picker-dropdown" aria-haspopup="true" aria-expanded="false" href="#" resolved="">
+    Bitbucket Server
+</button>
+                <div id="space-picker-dropdown" class="aui-style-default aui-dropdown2 aui-layer" role="menu" aria-hidden="true" resolved="">
+    <div role="application">
+        <div role="presentation" class="aui-dropdown2-section">
+            <div role="group">
+                <ul role="presentation">
+                                                                        <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/Cloud/Atlassian+Cloud+Documentation">Atlassian Cloud</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/BAMBOO/Bamboo+Documentation+Home">Bamboo</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/BITBUCKET/Bitbucket+Cloud+Documentation+Home">Bitbucket</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/BitbucketServer/Bitbucket+Server+documentation+home">Bitbucket Server</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/DOC/Confluence+Documentation+Home">Confluence</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/QUESTIONS/Questions+for+Confluence+Home">Questions for Confluence</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/CRUCIBLE/Crucible+Documentation+Home">Crucible</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/FISHEYE/FishEye+Documentation+Home">FishEye</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/HC/HipChat+Server+Documentation">HipChat</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/JIRASOFTWARE/JIRA+Software+Documentation">JIRA Software</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/SERVICEDESK/JIRA+Service+Desk+Documentation">JIRA Service Desk</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/JIRACORE/JIRA+Core+Home">JIRA Core</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/AdminJIRA/Administering+JIRA+Applications">Administering JIRA Applications</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/JIRAPortfolio/Portfolio+for+JIRA+Documentation">Portfolio for JIRA</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/JIRA/JIRA+Documentation">JIRA 6.4 and earlier</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/AGILE/JIRA+Agile+Documentation">JIRA Agile 6.7 and earlier</a></li>
+                                                                                                <li role="presentation"><a role="menuitem" href="https://confluence.atlassian.com/display/ALLDOC/Atlassian+Documentation">Other products....</a></li>
+                                                            </ul>
+            </div>
+        </div>
+    </div>
+</div>
+                <button type="button" role="button" class="aui-button aui-dropdown2-trigger" aria-controls="version-picker-dropdown" aria-haspopup="true" aria-expanded="false" href="#" resolved="">
+    Bitbucket Server 4.5
+</button>
+                <div id="version-picker-dropdown" class="aui-style-default aui-dropdown2 aui-layer" role="menu" aria-hidden="true" resolved="">
+    <div role="application">
+        <div role="presentation" class="aui-dropdown2-section">
+            <div role="group">
+                <ul role="presentation">
+                                                                                                                                                                                                                                                                    <li role="presentation"><a href="https://confluence.atlassian.com/display/BitbucketServer/Bitbucket+Server+documentation+home" page-not-found="">Bitbucket Server 4.5</a></li>
+                                                                                                                                                                                                                                                                                                                        <li role="presentation"><a href="https://confluence.atlassian.com/display/BitbucketServer044/Bitbucket+Server+documentation+home" page-not-found="">Bitbucket Server 4.4</a></li>
+                                                                                                                                                                                                                                                                                                                        <li role="presentation"><a href="https://confluence.atlassian.com/display/BitbucketServer043/Bitbucket+Server+documentation+home" page-not-found="">Bitbucket Server 4.3</a></li>
+                                                                                                                                                                                                                                                                                                                        <li role="presentation"><a href="https://confluence.atlassian.com/display/BitbucketServer042/Bitbucket+Server+documentation+home" page-not-found="">Bitbucket Server 4.2</a></li>
+                                                                                                                                                                                                                                                                                                                        <li role="presentation"><a href="https://confluence.atlassian.com/display/BitbucketServer041/Bitbucket+Server+documentation+home" page-not-found="">Bitbucket Server 4.1</a></li>
+                                                                                                                                                                                                                                                                                                                        <li role="presentation"><a href="https://confluence.atlassian.com/display/BitbucketServer040/Bitbucket+Server+documentation+home" page-not-found="">Bitbucket Server 4.0</a></li>
+                                                                                                                                                                                                                                                                                                                        <li role="presentation"><a href="https://confluence.atlassian.com/display/STASH0311/Stash+documentation+home" page-not-found="">Stash 3.11</a></li>
+                                                                                                                                                                                                                                                                                                                        <li role="presentation"><a href="https://confluence.atlassian.com/display/STASH0310/Stash+Documentation+Home" page-not-found="">Stash 3.10</a></li>
+                                                                                                                                                                                                                                                                                                                        <li role="presentation"><a href="https://confluence.atlassian.com/display/STASH039/Stash+Documentation+Home" page-not-found="">Stash 3.9</a></li>
+                                                                                                                                                                                                                                                                                                                        <li role="presentation"><a href="https://confluence.atlassian.com/display/STASH038/Stash+Documentation+Home" page-not-found="">Stash 3.8</a></li>
+                                                                                                                                                                                                                                                                                                                        <li role="presentation"><a href="https://confluence.atlassian.com/display/BitbucketServerKB/Bitbucket+Server+Knowledge+Base+Home" page-not-found="">Bitbucket Server knowledge base</a></li>
+                                                                                                                                                                                                                                                                                                                        <li role="presentation"><a href="https://confluence.atlassian.com/display/ALLDOC/Atlassian+Documentation" page-not-found="">Older versions...</a></li>
+                                                                                        </ul>
+            </div>
+        </div>
+    </div>
+</div>
+                                                                
+                                                             <span class="breadcrumb">
+                    <a href="https://confluence.atlassian.com/bitbucketserver/administering-bitbucket-server-776640044.html">Administering Bitbucket Server</a>
+                </span>
+            
+                                                             <span class="breadcrumb">
+                    <a href="https://confluence.atlassian.com/bitbucketserver/managing-add-ons-776640366.html">Managing add-ons</a>
+                </span>
+            
+                                        </div>
+
+                        </div>
+                      					<div class="aui-message">
+      					<p>Bitbucket Server was previously known as Atlassian Stash. <a href="http://go.atlassian.com/bitbucket-rebranding-blog">Learn more</a>.</p>
+    				</div>
+                    <h1>POST service webhook for Bitbucket Server</h1>
+                    
+<div id="confluence-content">
+    <div class="aui-group conf-macro output-block" data-hasbody="true" data-macro-name="sp-pagelayout"> 
+ <div class="aui-item" style=""> 
+  <p>Repository administrators can add a POST service to a repository. Bitbucket Server POSTs to the service URL you specify.</p>
+  <p>You can use an&nbsp;URL with the following format:</p>
+  <div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-name="code" style="border-width: 1px;">
+   <div class="codeContent panelContent pdl"> 
+    <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">https://server:port/path/</pre> 
+   </div>
+  </div>
+  <p>The service receives a POST whenever the user pushes to the repository.</p>
+  <p>The content type header of the POST has an&nbsp;<code>application/json</code>&nbsp;type. The content is a JSON payload that represents the repository push.</p>
+  <h2 id="POSTservicewebhookforBitbucketServer-SettingupthePOSTservice">Setting up the POST service</h2>
+  <p>You can either set up the POST service manually or you can write a service to automate this. You would write a service if you are integrating an application with Bitbucket Server.</p>
+  <h3 id="POSTservicewebhookforBitbucketServer-Setupintherepositorysettings">Set up in the repository settings</h3>
+  <ol>
+   <li>Go to the repository's&nbsp;settings.</li>
+   <li>Click&nbsp;<strong>Hooks&nbsp;</strong>in the left-hand navigation.</li>
+   <li>Click&nbsp;<strong>Enable</strong> for the 'Post-Receive Webhooks' item.&nbsp;You can add up to 5 URLs for&nbsp;where Bitbucket Server&nbsp;should send its update messages.</li>
+   <li>Press <strong>Save</strong>.</li>
+  </ol>
+  <h2 id="POSTservicewebhookforBitbucketServer-POSTdata">POST data</h2>
+  <p>When a user pushes to a repository, Bitbucket Server POSTs to the URL you provided. The body of the POST request contains information about the repository where the change originated, a list of recent commits, and the name of the user that made the push.&nbsp;</p>
+  <h3 id="POSTservicewebhookforBitbucketServer-Exampleofpayload"><strong>Example of payload</strong></h3>
+  <p>This is an example of a push that contains one commit that changes 2 files (<em>pom.xml</em>) in folders&nbsp;<em>iridium-common</em>&nbsp;and&nbsp;<em>iridium-magma</em>.</p>
+  <div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-name="code" style="border-width: 1px;">
+   <div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;">
+    <b>JSON Payload</b>
+   </div>
+   <div class="codeContent panelContent pdl"> 
+    <pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: js; gutter: false; theme: Confluence" data-theme="Confluence">{
+   "repository":{
+      "slug":"iridium-parent",
+      "id":11,
+      "name":"iridium-parent",
+      "scmId":"git",
+      "state":"AVAILABLE",
+      "statusMessage":"Available",
+      "forkable":true,
+      "project":{
+         "key":"IR",
+         "id":21,
+         "name":"Iridium",
+         "public":false,
+         "type":"NORMAL",
+         "isPersonal":false
+      },
+      "public":false
+   },
+   "refChanges":[
+      {
+         "refId":"refs/heads/master",
+         "fromHash":"2c847c4e9c2421d038fff26ba82bc859ae6ebe20",
+         "toHash":"f259e9032cdeb1e28d073e8a79a1fd6f9587f233",
+         "type":"UPDATE"
+      }
+   ],
+   "changesets":{
+      "size":1,
+      "limit":100,
+      "isLastPage":true,
+      "values":[
+         {
+            "fromCommit":{
+               "id":"2c847c4e9c2421d038fff26ba82bc859ae6ebe20",
+               "displayId":"2c847c4"
+            },
+            "toCommit":{
+               "id":"f259e9032cdeb1e28d073e8a79a1fd6f9587f233",
+               "displayId":"f259e90",
+               "author":{
+                  "name":"jhocman",
+                  "emailAddress":"jhocman@atlassian.com"
+               },
+               "authorTimestamp":1374663446000,
+               "message":"Updating poms ...",
+               "parents":[
+                  {
+                     "id":"2c847c4e9c2421d038fff26ba82bc859ae6ebe20",
+                     "displayId":"2c847c4"
+                  }
+               ]
+            },
+            "changes":{
+               "size":2,
+               "limit":500,
+               "isLastPage":true,
+               "values":[
+                  {
+                     "contentId":"2f259b79aa7e263f5829bb6e98096e7ec976d998",
+                     "path":{
+                        "components":[
+                           "iridium-common",
+                           "pom.xml"
+                        ],
+                        "parent":"iridium-common",
+                        "name":"pom.xml",
+                        "extension":"xml",
+                        "toString":"iridium-common/pom.xml"
+                     },
+                     "executable":false,
+                     "percentUnchanged":-1,
+                     "type":"MODIFY",
+                     "nodeType":"FILE",
+                     "srcExecutable":false,
+                     "link":{
+                        "url":"/projects/IR/repos/iridium-parent/commits/f259e9032cdeb1e28d073e8a79a1fd6f9587f233#iridium-common/pom.xml",
+                        "rel":"self"
+                     }
+                  },
+                  {
+                     "contentId":"2f259b79aa7e263f5829bb6e98096e7ec976d998",
+                     "path":{
+                        "components":[
+                           "iridium-magma",
+                           "pom.xml"
+                        ],
+                        "parent":"iridium-magma",
+                        "name":"pom.xml",
+                        "extension":"xml",
+                        "toString":"iridium-magma/pom.xml"
+                     },
+                     "executable":false,
+                     "percentUnchanged":-1,
+                     "type":"MODIFY",
+                     "nodeType":"FILE",
+                     "srcExecutable":false,
+                     "link":{
+                        "url":"/projects/IR/repos/iridium-parent/commits/f259e9032cdeb1e28d073e8a79a1fd6f9587f233#iridium-magma/pom.xml",
+                        "rel":"self"
+                     }
+                  }
+               ],
+               "start":0,
+               "filter":null
+            },
+            "link":{
+               "url":"/projects/IR/repos/iridium-parent/commits/f259e9032cdeb1e28d073e8a79a1fd6f9587f233#iridium-magma/pom.xml",
+               "rel":"self"
+            }
+         }
+      ],
+      "start":0,
+      "filter":null
+   }
+}</pre> 
+   </div>
+  </div>
+  <h2 id="POSTservicewebhookforBitbucketServer-Properties">Properties</h2>
+  <p>Some of the system-wide properties for the Webhook Plugin can be overridden in the Bitbucket Server configuration file. The available properties are listed in <a data-macro-name="sp-link" href="https://confluence.atlassian.com/bitbucketserver/bitbucket-server-config-properties-776640155.html#BitbucketServerconfigproperties-webhooks" class="conf-macro output-inline" data-hasbody="true">Bitbucket Server config properties</a>.</p> 
+ </div> 
+</div>
+</div>
+
+                                                                <div class="aui-group">
+    <div id="wasthishelpful" class="aui-item">
+        <p id="wasthishelpful-vote">
+            <strong id="wasthishelpful-text">Was this helpful?</strong>
+            <button aria-describedby="wasthishelpful-text" id="wasthishelpful-yes" class="aui-button aui-button-link">
+                <span class="aui-icon aui-icon-small aui-iconfont-like"></span> Yes
+            </button>
+            <button aria-describedby="wasthishelpful-text" id="wasthishelpful-no" class="aui-button aui-button-link">
+                <span class="aui-icon aui-icon-small aui-iconfont-like flip-vertical"></span> No
+            </button>
+        </p>
+        <p id="wasthishelpful-thanks" tabindex="-1">Thanks for your feedback!</p>
+    </div>
+</div>
+
+<div id="likes-section-no">
+    <div class="aui-inline-dialog-contents"><h5>Why was this unhelpful?</h5>
+        <form class="aui" action="">
+            <div class="radio"><input type="radio" name="unhelpful" value="It wasn&#39;t accurate" id="inaccurate">
+                <label for="inaccurate">It wasn't accurate</label>
+            </div>
+            <div class="radio">
+                <input type="radio" name="unhelpful" value="It wasn&#39;t clear" id="unclear">
+                <label for="unclear">It wasn't clear</label>
+            </div>
+
+            <div class="radio">
+                <input type="radio" name="unhelpful" value="It wasn&#39;t relevant" id="inapplicable">
+                <label for="inapplicable">It wasn't relevant</label>
+            </div>
+
+            <div id="likes-section-no-submit">
+                <button class="feedback-button aui-button" disabled="disabled">Submit feedback</button>
+                <a href="https://confluence.atlassian.com/bitbucketserver/post-service-webhook-for-bitbucket-server-776640367.html#" class="cancel-feedback aui-button aui-button-link">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+                        
+
+
+                    
+                </div>
+            </div>
+            <div class="aui-page-panel-inner powered-by">
+              Powered by <a href="http://atlassian.com/confluence/" title="Atlassian Confluence">Confluence</a>
+              and <a href="https://www.k15t.com/software/scroll-viewport/overview" title="Scroll Viewport">Scroll Viewport</a>
+            </div>
+        </div>
+      </div>
+    </section>
+    <footer id="footer" role="contentinfo">
+    <section class="footer-body">
+        <ul id="aui-footer-list">
+            <li><a href="https://support.atlassian.com/">Get support</a></li>
+            <li><a href="https://www.atlassian.com/company/contact">Product inquiry</a></li>
+            <li><a href="https://answers.atlassian.com/">Ask the community</a></li>
+        </ul>
+        <div id="footer-logo"><a href="http://www.atlassian.com/" target="_blank">Atlassian</a></div>
+    </section>
+</footer>
+</div>
+<script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/main.js"></script><script type="text/javascript" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/atl-analytics.min.js"></script><script type="text/javascript">ace.analytics.Initializer.initWithPageAnalytics('9nfqb81km3');</script><script type="text/javascript" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/2103380536.js"></script>
+<script type="text/javascript" src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin-issuecollector.js"></script>
+
+
+    <script src="./POST service webhook for Bitbucket Server - Atlassian Documentation_files/bootstrap.js" async=""></script>
+
+<div id="atlwdg-blanket" class="atlwdg-blanket" style="display: none;"></div><div id="atlwdg-container" class="atlwdg-popup atlwdg-hidden"></div><iframe style="visibility: hidden; position: fixed; top: -999px; left: -999px; width: 0px; height: 0px; border: 0px;"></iframe></body></html>

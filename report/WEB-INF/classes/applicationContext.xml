@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--suppress ALL -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -18,10 +18,10 @@
     <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
     <property name="url" value="jdbc:mysql://localhost:3306/test"></property>
     <property name="username" value="root"></property>
-    <property name="password" value="123456"></property>
+    <!--<property name="password" value="123456"></property>-->
     <!--<property name="url" value="jdbc:mysql://10.224.57.221:3306/test"></property>-->
     <!--<property name="username" value="root"></property>-->
-    <!--<property name="password" value="2012cisco2012"></property>-->
+    <property name="password" value="2012cisco2012"></property>
   </bean>
 
   <!-- 定义Hibernate的sessionFactory，通过该Bean，可以获得Hibernate的Session-->
