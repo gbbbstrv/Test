@@ -1,0 +1,5 @@
+<?php $conn=mysql_connect("localhost","root","123456") or die("error".mysql_error());
+echo("success");
+
+mysql_close();
+?>
