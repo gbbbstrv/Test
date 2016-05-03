@@ -1,0 +1,49 @@
+
+.header{
+    width: 90%;
+    height: 60px;
+    line-height: 60px;
+    border: 1px solid #999999;
+    border-radius: 5px;
+    margin: 40px auto;
+}
+
+.header strong{
+    width: 70px;
+    height: 20px;
+    margin: auto 20px;
+}
+.research, .table{
+  width: 90%;
+  margin: 0 auto;
+}
+.content .inline{
+  display: inline-block;
+  margin-right: 40px;
+}
+.content .inline span{
+  margin-right: 10px;
+}
+.content .inline input{
+  padding: 2px 5px;
+  height:30px;
+  width: 150px;
+}
+.table table{
+  width: 100%;
+}
+
+.container1 {
+    width: 90%;
+}
+
+.container2 {
+
+    width: 90%;
+    margin: auto;
+}
+.container3 {
+
+    width: 60%;
+    margin: auto;
+}

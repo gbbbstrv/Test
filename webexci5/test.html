@@ -1,0 +1,89 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <title>Webex CI</title>
+
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">-->
+  <link type="text/css" href="css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+  <link type="text/css" href="css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link type="text/css" href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet" />
+
+
+  <link rel="stylesheet" href="css/index.css">
+  <script type="text/javascript" charset="utf-8" language="javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="js/Chart.js"></script>
+  <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" charset="utf-8" language="javascript" src="js/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf-8" language="javascript" src="js/DT_bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="js/locales/bootstrap-datetimepicker.fr.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
+
+  <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+  <script type="text/javascript">
+
+  </script>
+
+
+</head>
+<body>
+<div class="container3" >
+<canvas id="canvas" height="450px" width="500px"></canvas>
+</div>
+
+<script>
+
+    $.ajax({
+        type: "POST",
+        url: "php/datecount.php",
+//            data:$('#config').serialize(),//格式化表单参数或者也可以使用data: {'folder':$('input[name=folder]').val(),'page':$('input[name=page]').val()},
+//            dataType: "text",
+//            data: "people="+ '1',
+//          data: {'sql': $('textarea[name=sql]').val(), 'page': $('input[name=page]').val()},
+        error: function () {
+            alert('error');
+        },
+        success: function (data) {
+            alert(data);
+            var json = eval('(' + data + ')');
+            var barChartData= {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'the number of push',
+                        backgroundColor: "rgba(70,130,180,0.5)",
+                        data: []
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    },
+
+                }
+            }
+            barChartData.data.labels=json.labels;
+            barChartData.data.datasets[0].data=json.data;
+
+//            var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Bar(barChartData,options);
+
+            var ctx = document.getElementById("canvas").getContext("2d");
+            var myChart = new Chart(ctx, barChartData);
+        }
+    });
+
+
+
+
+</script>
+</body>
+</html>
