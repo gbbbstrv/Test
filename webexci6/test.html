@@ -1,0 +1,139 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <title>Webex CI</title>
+
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">-->
+  <link type="text/css" href="css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+  <link type="text/css" href="css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link type="text/css" href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet" />
+    <!--<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
+    <!--<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
+    <style type="text/css">
+        body {
+            padding:20px;
+            margin:20px;
+        }
+    </style>
+
+  <link rel="stylesheet" href="css/index.css">
+  <script type="text/javascript" charset="utf-8" language="javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="js/Chart.js"></script>
+  <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+
+    <script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+  <script type="text/javascript" charset="utf-8" language="javascript" src="js/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf-8" language="javascript" src="js/DT_bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="js/locales/bootstrap-datetimepicker.fr.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!--<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>-->
+
+  <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+    <script type='text/javascript'>//<![CDATA[
+    $(window).load(function(){
+        $(document).ready(function () {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+
+                var href = $(e.target).attr('href');
+                var $curr = $(".checkout-bar  a[href='" + href + "']").parent();
+                $('.checkout-bar li').removeClass();
+                if(href=="#finish"){
+                    $curr.addClass("finish")}else{
+                    $curr.addClass("active");
+                }
+
+                $curr.prevAll().addClass("visited");
+
+
+
+            });
+        });
+    });//]]>
+
+    </script>
+
+
+</head>
+<body>
+
+<div class="container2" >
+<div class="row">
+    <h1 class="col-md-5 col-sm-12 col-xs-12">Gate Pipeline</h1>
+    <div class="checkout-wrap col-md-7 col-sm-12 col-xs-12 pull-center">
+        <ul class="checkout-bar">
+            <li class="active"><a href="#push-code" data-toggle="tab">Checkin</a>
+            </li>
+            <li class=""><a href="#pr-open" data-toggle="tab">PR Open</a>
+            </li>
+            <li class=""><a href="#pr-approve" data-toggle="tab">PR Approve</a>
+            </li>
+            <li class=""><a href="#EC-checkout" data-toggle="tab">Checkout</a>
+            </li>
+            <li class=""><a href="#EC-build" data-toggle="tab">Build</a>
+            </li>
+            <li class=""><a href="#EC-checkUT" data-toggle="tab">UT</a>
+            </li>
+            <li class=""><a href="#EC-callTA" data-toggle="tab">TA</a>
+            </li>
+            <li class=""><a href="#finish" data-toggle="tab">Push</a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="tabbable-panel">
+        <div class="tabbable-line">
+            <ul class="nav nav-tabs ">
+                <li class="active"><a href="#push-code" data-toggle="tab">Checkin</a>
+                </li>
+                <li><a href="#pr-open" data-toggle="tab">PR Open</a>
+                </li>
+                <li><a href="#pr-approve" data-toggle="tab">PR Approve</a>
+                </li>
+                <li class=""><a href="#EC-checkout" data-toggle="tab">Checkout</a>
+                </li>
+                <li class=""><a href="#EC-build" data-toggle="tab">Build</a>
+                </li>
+                <li class=""><a href="#EC-checkUT" data-toggle="tab">UT</a>
+                </li>
+                <li class=""><a href="#EC-callTA" data-toggle="tab">TA</a>
+                </li>
+                <li class=""><a href="#finish" data-toggle="tab">Push</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="push-code">
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                show logs<br>
+                                121231231<br>
+                                123123<br>
+                                12<br>
+                                3123<br>
+                            </div>
+                        </div>
+
+                </div>
+                <div class="tab-pane" id="pr-open">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            show logs
+
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="pr-approve"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
