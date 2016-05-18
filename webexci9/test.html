@@ -1,0 +1,243 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <title>Webex CI</title>
+
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">-->
+  <link type="text/css" href="css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+  <link type="text/css" href="css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link type="text/css" href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet" />
+    <!--<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
+    <!--<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
+    <style type="text/css">
+        body {
+            padding:20px;
+            margin:20px;
+        }
+    </style>
+
+  <link rel="stylesheet" href="css/index.css">
+  <script type="text/javascript" charset="utf-8" language="javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="js/Chart.js"></script>
+  <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+
+    <script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+  <script type="text/javascript" charset="utf-8" language="javascript" src="js/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf-8" language="javascript" src="js/DT_bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="js/locales/bootstrap-datetimepicker.fr.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!--<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>-->
+
+  <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+    <script type='text/javascript'>//<![CDATA[
+    $(window).load(function(){
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "POST",
+                url: "php/webexci/gatepipeline.php",
+//        data: {'sql':$('textarea[name=sql]').val(),'page':$('input[name=page]').val()},
+                error:function(){
+                    alert('error');
+                },
+                success: function (data) {
+                    alert(data);
+                    var json = eval('(' + data + ')');
+                    var href;
+                    for(var o in json.stage){
+                        if(json.stage[o].status=="2"){
+                           href="#"+json.stage[o].name;
+                            var $curr = $(".checkout-bar a[href='" + href + "']").parent();
+                            $curr.addClass("visited");
+                            $curr.next().addClass("active");
+                            $curr.prevAll().addClass("visited");
+                            if(json.stage[o].name=="pr"){
+                                document.getElementById("PR").innerHTML = "PR(Approved)";
+                            }
+                        }
+                        if(json.stage[o].status=="1"){
+                            href="#"+json.stage[o].name;
+                            var $curr = $(".checkout-bar a[href='" + href + "']").parent();
+                            $curr.addClass("active");
+                            $curr.prevAll().addClass("visited");
+                            if(json.stage[o].name=='pr'){
+
+                                document.getElementById("PR").innerHTML = "PR(Open)";
+                            }
+                        }
+                        if(json.stage[o].status=="3"){
+                            href="#"+json.stage[o].name;
+                            var $curr = $(".checkout-bar a[href='" + href + "']").parent();
+                            $curr.addClass("failed");
+                            $curr.prevAll().addClass("visited");
+                            if(json.stage[o].name=='pr'){
+
+                                document.getElementById("PR").innerHTML = "PR(Rejected)";
+                            }
+
+
+                        }
+
+                    }
+                    for(var k in json.build[0].stepjob){
+                        if(json.build[0].stepjob[k].status=="2"){
+                            href="#"+json.build[0].stepjob[k].stepname;
+                            var $curr = $(".checkout-bar a[href='" + href + "']").parent();
+                            $curr.addClass("visited");
+                            $curr.next().addClass("active");
+                            $curr.prevAll().addClass("visited");
+
+                        }
+                        if(json.build[0].stepjob[k].status=="1"){
+                            href="#"+json.build[0].stepjob[k].stepname;
+                            var $curr = $(".checkout-bar a[href='" + href + "']").parent();
+                            $curr.addClass("active");
+                            $curr.prevAll().addClass("visited");
+
+
+                        }
+                        if(json.build[0].stepjob[k].status=="3"){
+                            href="#"+json.build[0].stepjob[k].stepname;
+                            var $curr = $(".checkout-bar a[href='" + href + "']").parent();
+                            $curr.addClass("failed");
+                            $curr.prevAll().addClass("visited");
+                        }
+
+                    }
+                   var logstr="";
+                    for(var o in json.logs){
+                        logstr=logstr+json.logs[o].timestamp+"  "+json.logs[o].log+"<br>";
+
+                    }
+                    document.getElementById("logs").innerHTML = logstr;
+//                 alert(href);
+//                    var $curr = $(".checkout-bar a[href='" + href + "']").parent();
+//                    $curr.addClass("active");
+//                    $curr.prevAll().addClass("visited");
+//                    document.getElementById("PR").innerHTML = "PR("+json.pr[0].status+")";
+//
+//                    var $curr = $(".checkout-bar a[href='" + href + "']").parent();
+//                    if(json.pr[0].status=="approved"){
+//                        $curr.addClass("active");
+//                        $curr.prevAll().addClass("visited");
+//                        document.getElementById("PR").innerHTML = "PR("+json.pr[0].status+")";
+//                    }else{
+//                        if(json.pr[0].status=="rejected") {
+//                            $curr.addClass("failed");
+//                            $curr.prevAll().addClass("visited");
+//                            document.getElementById("PR").innerHTML = "PR(" + json.pr[0].status + ")";
+//
+//                        }else{
+//                            var href="#p2";
+//                            var $curr = $(".checkout-bar a[href='" + href + "']").parent();
+//                            $curr.addClass("active");
+//                            $curr.prevAll().addClass("visited");
+//                            document.getElementById("PR").innerHTML = "PR(" + json.pr[0].status + ")";
+//
+//                        }
+//                    }
+
+                }
+            });
+
+
+
+
+
+//
+//            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+//
+//                var href = $(e.target).attr('href');
+//                var $curr = $(".checkout-bar  a[href='" + href + "']").parent();
+//                $('.checkout-bar li').removeClass();
+//                if(href=="#finish"){
+//                    $curr.addClass("finish")}else{
+//                    $curr.addClass("active");
+//                }
+//
+//                $curr.prevAll().addClass("visited");
+//
+//
+//
+//            });
+        });
+    });//]]>
+
+    </script>
+
+
+</head>
+<body>
+
+<div class="container2" >
+<div class="row">
+    <h1 class="col-md-5 col-sm-12 col-xs-12">Gate Pipeline</h1>
+    <div class="checkout-wrap col-md-7 col-sm-12 col-xs-12 pull-center">
+        <ul class="checkout-bar">
+            <li class="active"><a href="#checkin" >Checkin</a>
+            </li>
+            <li class=""><a href="#pr" id="PR">PR(Open)</a>
+            </li>
+            <!--<li class=""><a href="#p3" id="PR" >PR</a>-->
+            <!--</li>-->
+            <li class=""><a href="#checkout" >Checkout</a>
+            </li>
+            <li class=""><a href="#Build" >Build</a>
+            </li>
+            <li class=""><a href="#UT" >UT</a>
+            </li>
+            <li class=""><a href="#TA" >TA</a>
+            </li>
+            <li class=""><a href="#merge" >Merge</a>
+            </li>
+            <!--<li class=""><a href="#finish" data-toggle="tab">Push</a>-->
+            <!--</li>-->
+
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="tabbable-panel">
+        <div class="tabbable-line">
+            <ul class="nav nav-tabs ">
+                <li class="active"><a href="#push-code" data-toggle="tab">Detail</a>
+                </li>
+                <!--<li><a href="#pr-open" data-toggle="tab">PR Open</a>-->
+                <!--</li>-->
+                <!--<li><a href="#pr-approve" data-toggle="tab">PR Approve</a>-->
+                <!--</li>-->
+                <!--<li class=""><a href="#EC-checkout" data-toggle="tab">Checkout</a>-->
+                <!--</li>-->
+                <!--<li class=""><a href="#EC-build" data-toggle="tab">Build</a>-->
+                <!--</li>-->
+                <!--<li class=""><a href="#EC-checkUT" data-toggle="tab">UT</a>-->
+                <!--</li>-->
+                <!--<li class=""><a href="#EC-callTA" data-toggle="tab">TA</a>-->
+                <!--</li>-->
+                <!--<li class=""><a href="#finish" data-toggle="tab">Push</a>-->
+                <!--</li>-->
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="push-code">
+
+                        <div class="panel panel-default">
+                            <div class="panel-body" id="logs">
+
+                            </div>
+                        </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
